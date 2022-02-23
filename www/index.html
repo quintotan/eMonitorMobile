@@ -1,0 +1,135 @@
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css">
+    <link rel="stylesheet" href="css/themes/pnptheme.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
+    -->
+    <link rel="stylesheet" href="css/themes/bluetheme.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <script src="js/IP.js"></script>
+    <title>Login</title>
+    <script src="../platforms/browser/platform_www/cordova.js"></script>
+    <script src="../platforms/browser/platform_www/cordova_plugins.js"></script>
+    <!--    <script src="../platforms/browser/platform_www/cordova.js"></script>-->
+<!--    <script src="../platforms/browser/platform_www/cordova_plugins.js"></script>-->
+
+</head>
+
+<body>
+    <!--
+        background-color: #2e3192;
+        border-color: #4044cc;
+    -->
+<div data-role="page">
+    <div data-role="header">
+        <h1>Login</h1>
+    </div>
+    <div class="ui-content" role="main">
+        <div data-role="content" id="content">
+            <figure id="topimg">
+                <div style="text-align: center;"><img src="./img/eMonitorLogo_small.png" alt="image"/></div>
+            </figure>
+            <div style="text-align: center"><h3>USAID Opportunity 2.0</h3></div>
+        </div>
+        <div class="ui-grid-a ui-responsive">
+            <label for="username"></label><input type="text" name="text-basic" id="email" placeholder="Email" value="ken2_032000@yahoo.com">
+            <label for="password"></label><input type="password" name="text-basic" id="password" placeholder="Password" value="12345">
+            <select name="agency_type" id="agency_type" style="font-family: 'Arial'; font-size: 13px;">
+                <option value="als"> Alternative Learning System (ALS) </option>
+                <option value="pyap"> PYAP </option>
+                <option value="tesda"> TESDA </option>
+            </select>
+            <br><br>
+            <div class="ui-block-a"><input id="btn_login" onclick="login()" type="button" data-transition="slidedown"
+                                           data-icon="check" value="Login"></div>
+            <div class="ui-block-b">
+                <!--
+                <input onclick="register()" type="button" data-icon="plus" value="Register">
+                -->
+                <h4 align="center">New User? <a href="#" id="CreateAccount" style="text-decoration: none;"> Create Account </a> </h4>
+            </div>
+
+            <div data-role="popup" id="p" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p style="color: red;"> Invalid Email or Password</p></div>
+        </div>
+    </div>
+    <div data-role="footer" data-position="fixed" style="background-color: white; border-color: white;">
+        <div style="text-align: center;">
+            <img src="./img/footer.png" alt="image"/>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#CreateAccount').on('click',function(){
+            window.location.href = 'register.html';
+        })
+        // $.ajax({
+        //   url: `http://${IP}/PHPRest/API_LOGIN.php`,
+        //   method: "post",
+        //   dataType:"json",
+        //   crossDomain: true,
+        //   data:{
+        //     key: "checkSession"
+        //   },
+        //   success: function (response){
+        //     let data = response.data[0]
+        //     if(data.user !== null){
+        //       $('body').on('tap',function(){
+        //         $('body').fadeOut(500,window.location.replace("dashboard.html"))
+        //       })
+        //     }
+        //   }
+        // })
+        // if (localStorage.length !== 0) {
+        //   $('body').fadeOut(500, window.location.replace("dashboard.html"))
+        // }
+    });
+    function login() {
+        $.ajax({
+
+            url: `${IP}CheckAccount_learners_login`,
+            method: "post",
+            dataType: "json",
+            crossDomain: true,
+            data: {
+                key: "login",
+                email: $("#email").val(),
+                password: $("#password").val()
+            },
+            success: function (response) {
+                let data = response;
+
+                if (data.exists) {
+                    // console.log(data.exists);
+                    // console.log(data.youth_id);
+                    // localStorage.setItem('id', data.user);
+                    localStorage.setItem('youth_id', data.youth_id);
+                    window.location.href = 'dashboard.html';
+                }else{
+                    $('#p').popup("open");
+                }
+            }
+
+        })
+    }
+
+
+
+    function register() {
+        window.location.href = 'register.html'
+    }
+</script>
+
+</body>
+
+</html>

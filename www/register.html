@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/themes/bluetheme.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/IP.js"></script>
+    <title>Login</title>
+    <script src="../platforms/browser/platform_www/cordova.js"></script>
+    <script src="../platforms/browser/platform_www/cordova_plugins.js"></script>
+
+    <title>Registration</title>
+</head>
+<body>
+    <!--- Registration Step 1 --->
+    <div data-role="page" id="registration_step1">
+        <div data-role="header">
+            
+             <button id="btnLogout">Back</button><h2> Registration </h2> 
+        </div>
+
+        <div data-role="content" id="content">
+            <figure id="topimg">
+                <div style="text-align: center;"><img src="./img/step1.png" alt="image"/></div>
+            </figure>
+
+            <input id="fname" name="fname" type="text" placeholder="First Name (Required)" style="height:43px;" >
+            <input id="lname" name="lname" type="text" placeholder="Last Name (Required)" style="height:43px;" >
+            <input id="mname" name="mname" type="text" placeholder="Middle Name" style="height:43px;" > 
+            <table>
+                <tr>
+                    <td>
+                        <input id="suffix" name="suffix" type="text" placeholder="Suffix" style="height:43px;">
+                    </td>
+                    <td>
+                        <select name="gender" id="gender">
+                            <option value="Male"> Male </option>
+                            <option value="Female"> Female </option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <input id="birthday" name="birthday" type="date" placeholder="Birthday" style="height:43px;">
+                    </td>
+                    <td>
+                        Birthdate <i>(Required)</i>
+                        
+                    </td>
+                </tr>
+            </table>
+
+            <input id="nationality" name="nationality" type="text" placeholder="Nationality (Required)" style="height:43px;" >
+            <input id="place_of_birth" name="place_of_birth" type="text" placeholder="Place of Birth (Required)" style="height:43px;">
+            <select name="civil_status" id="civil_status">
+                <option value="Single"> Single </option>
+                <option value="Married"> Married </option>
+                <option value="Divorce"> Divorce </option>
+                <option value="Separated"> Separated </option>
+                <option value="Widowed"> Widowed </option>
+            </select>
+
+            <input id="fathers_name" name="fathers_name" type="text" placeholder="Father's Name / Any Legal Guardian" style="height:43px;">
+            <input id="mothers_name" name="mothers_name" type="text" placeholder="Mother's Name (Required)" style="height:43px;">
+            <div data-role="popup" id="p" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p style="color: red;"> Some required fields is empty </p></div>
+             <a href="#registration_step2" class="ui-btn" id="btn_next" onclick="return validateForm('form1')"> Next </a> 
+        </div><!-- END Content-->
+        <br>
+        <div data-role="footer" data-position="fixed" style="background-color: white; border-color: white;">
+            <div style="text-align: center;">
+                <img src="./img/footer.png" alt="image"/>
+            </div>
+        </div>
+    </div><!-- END Registration Step 1-->
+
+    <!--- Registration Step 2 --->
+    <div data-role="page" id="registration_step2">
+        <div data-role="header">
+            <a href="#registration_step1" class="ui-btn"> Back </a><h2> Registration </h2>
+        </div>
+
+        <div data-role="content" id="content">
+            <figure id="topimg">
+                <div style="text-align: center;"><img src="./img/step2.png" alt="image"/></div>
+            </figure>
+            <div data-role="popup" id="p1" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p style="color: red;"> Some required fields is empty </p></div>
+            <!-- <input id="region" name="region" type="text" placeholder="Region" value="Region 10" style="height: 43px;"  value="Region 10"> -->
+            <!-- <input id="city_municipality" name="city_municipality" type="text" placeholder="City / Municipality" style="height: 43px;"  value="Cagayan de Oro"> -->
+            <table>
+                <tr>
+                    <td>
+                        Region
+                    </td>
+                    <td>:</td>
+                    <td>
+                        <select name="region" id="region" style="font-family: 'Arial'; font-size: 13px;">
+                            <option value="1"> Region 1 </option>
+                            <option value="2"> Region 2 </option>
+                            <option value="3"> Region 3 </option>
+                            <option value="4"> Region 4 </option>
+                            <option value="5"> Region 5 </option>
+                            <option value="6"> Region 6 </option>
+                            <option value="7"> Region 7 </option>
+                            <option value="8"> Region 8 </option>
+                            <option value="9"> Region 9 </option>
+                            <option value="10" selected="selected" > Region 10 </option>
+                            <option value="11"> Region 11 </option>
+                            <option value="12"> Region 12 </option>
+                            <option value="13"> Region 13 </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        City / Municipality
+                    </td>
+                    <td>:</td>
+                    <td>
+                        <select name="city_municipality" id="city_municipality" style="font-family: 'Arial'; font-size: 13px; width: 300px;">
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Barangay
+                    </td>
+                    <td>:</td>
+                    <td>
+                        <select name="barangay" id="barangay" style="font-family: 'Arial'; font-size: 13px; width: 300px;">
+                        </select>
+                    </td>
+                </tr>
+            </table>
+            
+            <input id="contact_no" name="contact_no" type="text" placeholder="Contact No." style="height: 43px;" >
+            <!-- <input id="barangay" name="barangay" type="text" placeholder="Barangay" style="height: 43px;"  value="Kauswagan"> -->
+            <input id="street" name="street" type="text" placeholder="House No./Street/Sitio" style="height: 43px;" >
+            <input id="district" name="district" type="text" placeholder="District" style="height: 43px;" >
+            <input id="province" name="province" type="text" placeholder="Province" style="height: 43px;" >          
+            <a href="#registration_step3" class="ui-btn" id="btn_next" onclick="return validateForm('form2')"> Next </a> 
+        </div><!-- END Content-->
+
+        <div data-role="footer" data-position="fixed" style="background-color: white; border-color: white;">
+            <div style="text-align: center;">
+                <img src="./img/footer.png" alt="image"/>
+            </div>
+        </div>
+    </div><!-- END Registration Step 2-->
+
+    <!--- Registration Step 3 --->
+    <div data-role="page" id="registration_step3">
+        <div data-role="header">
+            <a href="#registration_step2" class="ui-btn"> Back </a><h2> Registration </h2>
+        </div>
+
+        <div data-role="content" id="content">
+            <figure id="topimg">
+                <div style="text-align: center;"><img src="./img/step3.png" alt="image"/></div>
+            </figure>
+            <div data-role="popup" id="p2" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p style="color: red;"> Some required fields is empty </p></div>
+            <div data-role="popup" id="p_mismatch" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p id="p_message" style="color: red;"> Password Mismatch! </p></div>
+            <div data-role="popup" id="div_success" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p id="p_success" style="color: rgb(0, 0, 0);"> Successfully Register! </p>
+            </div>
+            <div data-role="popup" id="div_info" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+                <p id="p_info" style="color: rgb(0, 0, 0);"> Code Sent! </p>
+            </div>
+            <span id="email_alert"></span>
+            <input id="email_status" name="email_status" type="hidden">
+            <table>
+                <tr>
+                    <td>
+                        <input id="email" name="email" type="text" placeholder="Email Address" style="height: 43px; width: 230px;">
+                    </td>
+                    <td>
+                        <button id="send_code" onclick="sendEmail()" style="background-color: #4044cc;"> Send Code </button>
+                    </td>
+                </tr>
+            </table>
+            <input id="password" name="password" type="password" placeholder="Password" style="height: 43px;">
+            <input id="re_type_password" name="re_type_password" type="password" placeholder="Re-type Password" style="height: 43px;" >
+            <input id="confirmation_code" name="confirmation_code" type="text" placeholder="Confirmation Code" style="height: 43px;" >
+            <p>In what agency you want to register? Choose below</p>
+            <select name="agency_type" id="agency_type" style="font-family: 'Arial'; font-size: 13px;">
+                <option value="ALS"> Alternative Learning System (ALS) </option>
+                <option value="PYAP"> PYAP </option>
+                <option value="TESDA"> TESDA </option>
+            </select>
+            <label align="center"> <a href="#terms_condition" id="btnTerms" data-rel="dialog" style="text-decoration: none;">Terms and Conditions </a></label>
+            <label>
+                <input type="checkbox" id="terms_and_condition" name="terms_and_condition" data-theme="b">
+                        I accept the terms and conditions
+            </label>
+            <br>
+            <button id="submit" onclick="register()"> Register </button>
+             
+            
+        </div><!-- END Content-->
+
+        <div data-role="footer" data-position="fixed" style="background-color: white; border-color: white;">
+            <div style="text-align: center;">
+                <img src="./img/footer.png" alt="image"/>
+            </div>
+        </div>
+    </div><!-- END Registration Step 3-->
+
+    <div data-role="page" id="terms_condition">
+        <div data-role="header">
+            <h2> Terms and Condition </h2>
+        </div>
+        <div data-role="content" id="dialog-content">
+            <p style="text-align: justify;">
+                Please read these terms and conditions ("terms and conditions", "terms") carefully before using eMonitor application operated by Cagayan de Oro local government, developed by USTP-CDO and funded by USAID and EDC.
+                <br><br>
+                <b>Conditions of use </b>
+                <br>
+                By using this website, you certify that you have read and reviewed this Agreement and that you agree to comply with its terms. If you do not want to be bound by the terms of this Agreement, you are advised to leave the website accordingly. eMonitor only grants use and access of this website, its products, and its services to those who have accepted its terms.
+                <br><br>
+                <b>Privacy policy</b>
+                <br>
+                Before you continue using this app, we advise you to read our privacy policy [eMonitor privacy policy] regarding our user data collection. It will help you better understand our practices.
+                <br><br>
+                <b>Age restriction</b>
+                <br>
+                You must be at least 18 (eighteen) years of age before you can use this application. By using this application, you warrant that you are at least 18 years of age and you may legally adhere to this Agreement. eMonitor assumes no responsibility for liabilities related to age misrepresentation.
+                <br><br>
+                <b>Intellectual property</b>
+                <br>
+                You agree that all materials, products, and services provided on this application are the property of eMonitor, its affiliates, directors, officers, employees, agents, suppliers, or licensors including all copyrights, trade secrets, trademarks, patents, and other intellectual property. You also agree that you will not reproduce or redistribute the eMonitor sintellectual property in any way, including electronic, digital, or new trademark registrations.
+                You grant eMonitor a royalty-free and non-exclusive license to display, use, copy, transmit, and broadcast the content you upload and publish. For issues regarding intellectual property claims, you should contact the company in order to come to an agreement.
+                <br><br>
+                <b>User accounts</b>
+                <br>
+                As a user of this website, you may be asked to register with us and provide private information. You are responsible for ensuring the accuracy of this information, and you are responsible for maintaining the safety and security of your identifying information. You are also responsible for all activities that occur under your account or password.
+                If you think there are any possible issues regarding the security of your account on the website, inform us immediately so we may address them accordingly.
+                We reserve all rights to terminate accounts, edit or remove content and cancel orders atour sole discretion.
+                <br><br>
+                <b>Applicable law</b>
+                <br>
+                By visiting this website, you agree that the laws of the Philippines, without regard to principles of conflict laws, will govern these terms and conditions, or any dispute of any sort that might come between eMonitor and you, or its business partners and associates.
+                <br><br>
+                <b>Disputes</b>
+                <br>
+                Any dispute related in any way to your visit to this website or to products you purchase from us shall be arbitrated by state or court of Philippines and you consent to exclusive jurisdiction and venue of such courts.
+                <br><br>
+                <b>Indemnification</b>
+                <br>
+                You agree to indemnify eMonitor and its affiliates and hold eMonitor harmless against legal claims and demands that may arise from your use or misuse of our services. We reserve the right to select our own legal counsel. 
+                <br><br>
+                <b>Limitation on liability</b>
+                <br>
+                eMonitor is not liable for any damages that may occur to you as a result of your misuse of our website.
+                eMonitor reserves the right to edit, modify, and change this Agreement at any time. We shall let our users know of these changes through electronic mail. This Agreement is an understanding between eMonitor and the user, and this supersedes and replaces all prior agreements regarding the use of this website.
+            </p>
+        </div>
+    </div> <!-- END DIV Terms and Conditions-->
+
+
+
+    <script>
+       function validateForm(key)
+        {
+            var ConfirmationCode = '0';
+            //alert(key);
+            if (key == 'form1')
+            {
+                var fname = $('#fname').val();
+                var lname = $('#lname').val();
+                var mothers_name = $('#mothers_name').val();
+                var birthday = $('#birthday').val();
+                if (fname == '' || lname == '' || mothers_name == '' || birthday == '')
+                { 
+                    $('#p').popup("open");
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else if (key == 'form2')
+            {
+                var region = $('#region').val();
+                var city_municipality = $('#city_municipality').val();
+                var barangay = $('#barangay').val();
+                var street = $('#street').val();
+                var province = $('#province').val();
+
+                if (region == '' || city_municipality == '' || barangay == '' || street == '' || province == '')
+                {
+                    $('#p1').popup("open");
+                    return false;
+                }else{
+                    return true;
+                }
+            }
+            else if (key == 'form3')
+            {
+                var email = $('#email').val();
+                var password = $('#password').val();
+                var re_type_password = $('#re_type_password').val();
+                var confirmation_code = $('#confirmation_code').val();
+                if (email == '' || password == '' || re_type_password == '' || confirmation_code == '')
+                {
+                    $('#p2').popup("open");
+                    return false;
+                }                 
+                if (password != re_type_password){
+                    $('#p_mismatch').popup("open");
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        function register() {
+            var checkedValue = $('#terms_and_condition:checked').val();
+            var txtConfirmationCode = $('#confirmation_code').val();
+            let agency = '';
+            if($('#agency_type').val() == 'Alternative Learning System (ALS)')
+            {
+                agency = 'ALS';
+            }
+            else 
+            {
+                agency = $('#agency_type').val();
+            }
+            if(validateForm('form3'))
+            {
+                if(typeof(ConfirmationCode) === "undefined")
+                {
+                    $('#p_message').text('Confirmation Code is required through \"Send Code\" button');
+                    $('#p_mismatch').popup("open");
+                }
+                else
+                {
+                    if(txtConfirmationCode == ConfirmationCode)
+                    {
+                        if (checkedValue == undefined){
+                            $('#p_message').text('Accepting the terms and conditions of this app is required');
+                            $('#p_mismatch').popup("open");
+                        }
+                        else
+                        {
+                            $.ajax({
+                                url: `${IP}Register_osy`,
+                                method: "post",
+                                dataType: "json",
+                                crossDomain: true,
+                                data: {
+                                    key: "insert",
+                                    firstname : $('#fname').val(),
+                                    lastname : $('#lname').val(),
+                                    middlename : $('#mname').val(),
+                                    suffix : $('#suffix').val(),
+                                    gender : $('#gender').val(),
+                                    birthday : $('#birthday').val(),
+                                    nationality : $('#nationality').val(),
+                                    place_of_birth : $('#place_of_birth').val(),
+                                    civil_status : $('#civil_status').val(),
+                                    fathers_name : $('#fathers_name').val(),
+                                    mothers_name : $('#mothers_name').val(),
+                                    contact_no : $('#contact_no').val(),
+                                    region : $('#region').val(),
+                                    city : $('#city_municipality').val(),
+                                    barangay : $('#barangay').val(),
+                                    street : $('#street').val(),
+                                    district : $('#district').val(),
+                                    province : $('#province').val(),
+                                    email_add : $('#email').val(),
+                                    password : $('#password').val(),
+                                    agency : agency,
+                                },
+                                success: function (response) {
+                                    $('#div_success').popup("open");
+                                }
+                            }) //end ajax call
+                        }
+                    } //end if txtConfirmationCode == ConfirmationCode
+                    else
+                    {
+                        //$('#p_invalid_code').popup("open");
+                        $('#p_message').text('Incorrect Confirmation Code!');
+                        $('#p_mismatch').popup("open");
+                    }
+                }
+            } //end if, if text all text fields are not empty
+        }
+
+        function IsEmail_available(email) 
+        {
+            let flag = false;
+            $.ajax({
+                url: `${IP}isEmail_exist`,
+                method: "post",
+                dataType: "json",
+                crossDomain: true,
+                data: {
+                    key: "email_validation",
+                    email: email
+                },
+                success: function (response) {
+                    let data = response;
+                    console.log('Actual : ' + data.exists);
+                    if (data.exists) {
+                        flag = true;
+                    }else{
+                        flag = false;
+                    }
+                } 
+            })
+            return flag;
+        }
+
+        function sendEmail(){
+            var emailTo = $('#email').val();
+            if($('#email_status').val() == 'Email available')
+            {
+                ConfirmationCode = generate_code();
+                var firstname = $('#fname').val();
+                $.ajax({
+                    url: `${IP}sendMail`,
+                    method: "post",
+                    dataType: "json",
+                    crossDomain: true,
+                    data: {
+                        emailTo: emailTo,
+                        code: ConfirmationCode,
+                        firstname: firstname
+                    },
+                    success: function (response) {
+                        
+                    }
+                })
+                $('#div_info').popup("open");
+            }
+        }
+
+        function generate_code() 
+        {
+            var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var codeLength = 5;
+            var code = "";
+            for (var i = 0; i <= codeLength; i++) 
+            {
+                var randomNumber = Math.floor(Math.random() * chars.length);
+                code += chars.substring(randomNumber, randomNumber +1);
+            }
+            ConfirmationCode = code;
+            return code;
+        }
+
+        function load_city_municipality(region_no)
+        {
+            $.ajax({
+                    url: `${IP}get_cities_municipalities`,
+                    method: "post",
+                    dataType: "json",
+                    crossDomain: true,
+                    data: {
+                        region: region_no
+                    },
+                    success: function (response) {
+                        //console.log(response);
+                        let data_length = Object.keys(response).length;
+                        let data = '';
+                        $('#city_municipality').children().remove().end();
+                        for(let i=0; i<data_length; i++){
+                            data = response[i];
+                            $('#city_municipality').append('<option value="'+ data.zip_code +'">'+ data.city_municipality_name +'</option>');
+                        }
+                    }
+                })
+        }
+
+        function load_barangay(zip_code)
+        {
+            $.ajax({
+                    url: `${IP}get_barangays`,
+                    method: "post",
+                    dataType: "json",
+                    crossDomain: true,
+                    data: {
+                        zip_code: zip_code
+                    },
+                    success: function (response) {
+                        //console.log(Object.keys(response).length);
+                        let data_length = Object.keys(response).length;
+                        let data = '';
+                        $('#barangay').children().remove().end();
+                        for(let i=0; i<data_length; i++){
+                            data = response[i];
+                            $('#barangay').append('<option value="'+ data.barangay_id +'">'+ data.barangay_name +'</option>');
+                        }
+                    }
+                })
+        }
+
+        $(document).ready(function () 
+        {           
+            load_city_municipality(10); 
+            $('#btnLogout').on('click', function(){
+                window.location.href = 'index.html';
+            })
+            
+            function showMessage(){
+                $('#p_dob').popup("open");
+            }
+
+
+            $('#city_municipality').on('change', function(){
+                var zip = $('#city_municipality').val();
+                load_barangay(zip);
+            })
+
+            $('#region').on('change', function(){
+                var region = $('#region').val();
+                load_city_municipality(region);
+            })
+
+            $("#div_success").on("popupafterclose", function (e, ui){
+                window.location.href = "index.html";
+            });
+
+            $('#email').change(function(){
+                let email = $('#email').val();
+                if(email != '')
+                {
+                    $.ajax({
+                        url: `${IP}isEmail_exist`,
+                        method: "post",
+                        dataType: "text",
+                        crossDomain: true,
+                        data: {
+                            email: email
+                        },
+                        success: function (response) {
+                            var html = '';
+                            if (response == 'Email available'){
+                                html = '<span style="color: green; text-align: center;"> '+ response +'</span>';
+                            }else{
+                                html = '<span style="color: red; text-align: center;"> '+ response +'</span>';
+                            }
+                            $('#email_alert').html(html);
+                            $('#email_status').val(response);
+                        } 
+                    });
+                }
+                else
+                {
+                    $('#email_alert').html('<span>');  
+                }
+            })
+
+        });
+    </script>
+</body>
+</html>

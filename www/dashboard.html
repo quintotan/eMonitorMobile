@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/themes/bluetheme.css" />
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
+
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    <script src="js/IP.js"></script>
+    <title>Login</title>
+    <script src="../platforms/browser/platform_www/cordova.js"></script>
+    <script src="../platforms/browser/platform_www/cordova_plugins.js"></script>
+
+    <title>Dashboard</title>
+</head>
+<body>
+    <!--- HOME DASHBOARD --->
+    <div data-role="page" id="main_dashboard">
+      <div data-role="header">
+          <button id="btnLogout">Logout</button><h2> Dashboard Header </h2>
+      </div>
+
+      <div data-role="content">
+        <a href="#als_dialog" data-rel="dialog" class="ui-btn" id="btn_show_als"> Show ALS Dialog </a>
+        <a href="#tesda_dialog" data-rel="dialog" class="ui-btn" id="btn_show_tesda"> Show TESDA Dialog </a>
+        <a href="#pyap_dialog" data-rel="dialog" class="ui-btn" id="btn_show_pyap"> Show TESDA Dialog </a>
+        <a href="#main_dashboard" data-rel="dialog" class="ui-btn" id="btn_show_main"> Show Main </a>
+      </div>
+
+      <div data-role="footer" data-position="fixed" style="background-color: white; border-color: white;">
+        <div style="text-align: center;">
+            <h3> &copy; Copyright Reserved</h3>
+        </div>
+      </div>
+    </div> <!-- END DIV page-->
+
+    <!-- ALS Dialog only page -->
+    <div data-role="page" id="als_dialog">
+      <div data-role="header">
+          <h2> ALS System </h2>
+      </div>
+      <div data-role="content" id="dialog-content">
+        <div data-role="tabs">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#fragment-1" class="ui-btn-active">Education Status</a></li>
+              <li><a href="#fragment-2">ALS Session</a></li>
+            </ul>
+          </div>
+          <div id="fragment-1">
+            <table>
+              <tr>
+                  <td>
+                      Elementary
+                  </td>
+                  <td>:</td>
+                  <td>
+                      <select name="elementary" id="elementary" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="N/A"> N/A </option>
+                        <option value="K-1"> K-1 </option>
+                        <option value="K-2"> K-2 </option>
+                        <option value="G-1"> G-1 </option>
+                        <option value="G-2"> G-2 </option>
+                        <option value="G-3"> G-3 </option>
+                        <option value="G-4"> G-4 </option>
+                        <option value="G-5"> G-5 </option>
+                        <option value="G-6"> G-6 </option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                    Secondary
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="secondary" id="secondary" style="font-family: 'Arial'; font-size: 13px;">
+                      <option value="N/A"> N/A </option>  
+                      <option value="G-7"> G-7 </option>
+                      <option value="G-8"> G-8 </option>
+                      <option value="G-9"> G-9 </option>
+                      <option value="G-10"> G-10 </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td colspan="3"> <label style="font-weight: bold;"> Why did you drop out of school? (For OSY only) Please answer below </label></td>
+              </tr>
+              <tr>
+                <td>
+                    NO School in Barangay?
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="school_in_brgy" id="school_in_brgy" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="N/A"> N/A </option>  
+                        <option value="Yes"> Yes </option>
+                        <option value="No"> No </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    Financial Problem?
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="financial_problem" id="financial_problem" style="font-family: 'Arial'; font-size: 13px;">
+                      <option value="N/A"> N/A </option>
+                        <option value="Yes"> Yes </option>
+                        <option value="No"> No </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    School faraway?
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="school_faraway" id="school_faraway" style="font-family: 'Arial'; font-size: 13px;">
+                      <option value="N/A"> N/A </option>
+                        <option value="Yes"> Yes </option>
+                        <option value="No"> No </option>
+                    </select>
+                </td>
+              </tr>
+            </table>
+            <input id="other_reasons" name="other_reasons" type="text" placeholder="(Other Reasons) Please specify" style="height: 43px;" >
+          </div>
+          <div id="fragment-2">
+            <table>
+              <tr>
+                  <td>
+                      Distance from home to Learning Center (in KMS)
+                  </td>
+                  <td>:</td>
+                  <td>
+                      <select name="distance_from_home_inKMS" id="distance_from_home_inKMS" style="font-family: 'Arial'; font-size: 13px;">
+                          <option value="1-2"> 1-2 </option>
+                          <option value="2-3"> 2-3 </option>
+                          <option value="3-4"> 3-4 </option>
+                          <option value="4-5"> 4-5 </option>
+                          <option value="5 Above"> 5 Above </option>
+                      </select>
+                  </td>
+              </tr>
+              <tr>
+                <td>
+                    Distance from home to Learning Center (in HRS)
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="distance_from_home_inHRS" id="distance_from_home_inHRS" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="1-2"> 1-2 </option>
+                        <option value="2-3"> 2-3 </option>
+                        <option value="3-4"> 3-4 </option>
+                        <option value="4-5"> 4-5 </option>
+                        <option value="5 Above"> 5 Above </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    Mode of Transportation
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="mode_of_transportation" id="mode_of_transportation" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="Walking"> Walking </option>
+                        <option value="Motorcycle"> Motorcycle </option>
+                        <option value="Bicycle"> Bicycle </option>
+                        <option value="Private Vehicle"> Private Vehicle </option>
+                        <option value="Public Vehicle"> Public Vehicle </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    Day can attend to Learning Center
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="day_attend" id="day_attend" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="Monday"> Monday </option>
+                        <option value="Tuesday"> Tuesday </option>
+                        <option value="Wednesday"> Wednesday </option>
+                        <option value="Thursday"> Thursday </option>
+                        <option value="Friday"> Friday </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    Passed the Academic & Equivalency Test?
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="passed_the_acad_test" id="passed_the_acad_test" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="Yes"> Yes </option>
+                        <option value="No"> No </option>
+                    </select>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                    Have you attended ALS Session before?
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="attended_before" id="attended_before" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="Yes"> Yes </option>
+                        <option value="No" selected="selected"> No </option>
+                    </select>
+                </td>
+              </tr>
+            </table>
+            <div id="if_attended">
+              <input id="name_of_program" name="name_of_program" type="text" placeholder="If attended, name of the program" style="height: 43px;" >
+              <input id="year_attended" name="year_attended" type="text" placeholder="Year Attended" style="height: 43px;" >
+              <input id="level_of_literacy" name="level_of_literacy" type="text" placeholder="Level of Literacy (Basic, Elementary Infed)" style="height: 43px;" >
+              <table>
+                <tr>
+                  <td>
+                      Have you completed the program?
+                  </td>
+                  <td>:</td>
+                  <td>
+                      <select name="is_program_completed" id="is_program_completed" style="font-family: 'Arial'; font-size: 13px;">
+                          <option value="Yes"> Yes </option>
+                          <option value="No"> No </option>
+                      </select>
+                  </td>
+                </tr>
+              </table>
+              <input id="reason_not_completed" name="reason_not_completed" type="text" placeholder="Reason for not completed" style="height: 43px;" >
+            </div>
+          </div> <!-- END DIV fragment 2-->
+        </div> 
+        <div data-role="popup" id="div_info" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+          <p id="p_info" style="color: rgb(0, 0, 0);"> Information Successfully Saved! </p>
+        </div>
+        <button id="btnSave"> Save </button>
+      </div>
+    </div> <!-- END DIV-->
+
+    
+    <!-- TESDA Dialog only page -->
+    <div data-role="page" id="tesda_dialog">
+      <div data-role="header">
+          <h2> TESDA System </h2>
+      </div>
+      <div data-role="content" id="dialog-content">
+        <div data-role="tabs">
+          <div data-role="navbar">
+            <!--
+            <ul>
+              <li><a href="#fragment-1" class="ui-btn-active">Educational Attainment & Classification</a></li>
+            </ul>
+            -->
+          </div>
+          <div id="fragment-1">
+            <br>
+            <label style="font-size: 17px; font-family: 'Arial';"> Highest Educational Attained  </label>
+              <select name="educational_attainment" id="educational_attainment" style="font-family: 'Arial'; font-size: 11px;">
+                  <option value="No Grade"> No Grade Completed </option>
+                  <option value="Elementary Undergraduate"> Elementary Undergraduate </option>
+                  <option value="Elementary Graduate"> Elementary Graduate </option>
+                  <option value="Pre School (Nursery/Kinder/Prep)"> Pre School (Nursery/Kinder/Prep)  </option>
+                  <option value="Post Secondary Undergraduate"> Post Secondary Undergraduate </option>
+                  <option value="Post Secondary Graduate"> Post Secondary Graduate </option>
+                  <option value="High School Undergraduate"> High School Undergraduate </option>
+                  <option value="High School Graduate"> High School Graduate </option>
+                  <option value="FridCollege Undergraduateay"> College Undergraduate </option>
+                  <option value="College Graduate or Higher"> College Graduate or Higher </option>
+                  <option value="Junior High Graduate"> Junior High Graduate </option>
+                  <option value="Senior High Graduate"> Senior High Graduate </option>
+              </select>
+              <label style="font-size: 17px; font-family: 'Arial';"> Learner/Trainee/Student Classification  </label>
+              <select name="client_classification" id="client_classification" style="font-family: 'Arial'; font-size: 11px;">
+                  <option value="4Ps Beneficiary"> 4Ps Beneficiary </option>
+                  <option value="Agrarian Reform Beneficiary"> Agrarian Reform Beneficiary </option>
+                  <option value="Balik Probinsya"> Balik Probinsya </option>
+                  <option value="Displaced Workers"> Displaced Workers  </option>
+                  <option value="Drug Dependents Surrenderers"> Drug Dependents Surrenderers </option>
+                  <option value="Family of AFP/PNP Killed in Action"> Family of AFP/PNP Killed in Action </option>
+                  <option value="Family of AFP/PNP Wounded in Action"> Family of AFP/PNP Wounded in Action </option>
+                  <option value="Farmers and Fisherman"> Farmers and Fisherman </option>
+                  <option value="Indigenous People & Cultural Communities"> Indigenous People & Cultural Communities </option>
+                  <option value="Industry Workers"> Industry Workers </option>
+                  <option value="Inmates and Detainees"> Inmates and Detainees </option>
+                  <option value="MILF Beneficiary"> MILF Beneficiary </option>
+                  <option value="Out-of-School-Youth"> Out-of-School-Youth </option>
+                  <option value="Overseas Filipino Workers (OFW) Dependents"> Overseas Filipino Workers (OFW) Dependents </option>
+                  <option value="RCEF-RESP"> RCEF-RESP </option>
+                  <option value="Rebel Returnees/Decommissioned Combatants"> Rebel Returnees/Decommissioned Combatants </option>
+                  <option value="Returning/Repatriated OFWs"> Returning/Repatriated OFWs </option>
+                  <option value="Student"> Student </option>
+                  <option value="TESDA Alumni"> TESDA Alumni </option>
+                  <option value="TVET Trainers"> TVET Trainers </option>
+                  <option value="Uniformed Personnel"> Uniformed Personnel </option>
+                  <option value="Victim of Natural Disaster and Calamities"> Victim of Natural Disaster and Calamities </option>
+                  <option value="Wounded in Action AFP/PNP Personnel"> Wounded in Action AFP/PNP Personnel </option>
+                  <option value="Others"> Others </option>
+              </select>
+              <input id="others_clients_classification" name="others_clients_classification" type="text" placeholder="Please specify if choosen others" style="height: 43px;" >
+              <input id="course_name" name="course_name" type="text" placeholder="Name of Course/Qualification" style="height: 43px;" >
+              <input id="scholarship" name="scholarship" type="text" placeholder="Type of scholarship (TWSP, PESFA, STEP, Others)" style="height: 43px;" >
+          </div>
+        </div> 
+        <br>
+        <div data-role="popup" id="div_info2" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+          <p id="p_info2" style="color: rgb(0, 0, 0);"> Information Successfully Saved! </p>
+        </div>
+        <button id="btnSave_tesda"> Save </button>
+      </div>
+    </div> <!-- END DIV TESDA Dialog-->
+
+    <!-- PYAP Dialog only page -->
+    <div data-role="page" id="pyap_dialog">
+      <div data-role="header">
+          <h2> PYAP System </h2>
+      </div>
+      <div data-role="content" id="dialog-content">
+        <div data-role="tabs">
+          <div data-role="navbar">
+            
+            <ul>
+              <li><a href="#fragment-1" class="ui-btn-active">Educational Status</a></li>
+              <li><a href="#fragment-2">Work Experience</a></li>
+            </ul>
+            
+          </div>
+          <div id="fragment-1">
+            <br>
+            <label style="font-size: 17px; font-family: 'Arial';"> Highest Educational Attained  </label>
+            <select name="educational_attainment" id="educational_attainment" style="font-family: 'Arial'; font-size: 11px;">
+                <option value="Elementary Graduate"> Elementary Graduate </option>
+                <option value="Alternative Learning System"> Alternative Learning System </option>
+                <option value="Open High School Program"> Open High School Program  </option>
+                <option value="Junior High School Level"> Junior High School Level  </option>
+                <option value="Junior High School Graduate"> Junior High School Graduate </option>
+                <option value="Senior High School Level"> Senior High School Level </option>
+                <option value="Senior High School Graduate"> Senior High School Graduate </option>
+                <option value="College Level"> College Level </option>
+                <option value="College Graduate"> College Graduate </option>
+                <option value="TESDA Graduate"> TESDA Graduate </option>
+            </select>
+            <input id="year_last_attended" name="year_last_attended" type="text" placeholder="Year Last Attended / Graduated" style="height: 43px;" >
+            <br>
+            <label style="font-size: 17px; font-family: 'Arial';"> Current Status  </label>
+            <select name="current_status" id="current_status" style="font-family: 'Arial'; font-size: 11px;">
+                <option value="Out of School Youth"> Out of School Youth </option>
+                <option value="Working Youth"> Working Youth </option>
+                <option value="In School Youth"> In School Youth  </option>
+            </select>
+            <input id="reason_for_stopping_school" name="reason_for_stopping_school" type="text" placeholder="Reason for stopping school" style="height: 43px;" >
+            <br>
+            <table>
+              <tr>
+                <td>
+                    Interested in Technical Vocational skills Training?
+                </td>
+                <td>:</td>
+                <td>
+                    <select name="interested_in_techvoc" id="interested_in_techvoc" style="font-family: 'Arial'; font-size: 13px;">
+                        <option value="Yes"> Yes </option>
+                        <option value="No" selected="selected"> No </option>
+                    </select>
+                </td>
+              </tr>
+            </table>
+            <div id="if_interested_techvoc">
+              <input id="first_option" name="first_option" type="text" placeholder="1. First skills want to learn)" style="height: 43px;" >  
+              <input id="second_option" name="second_option" type="text" placeholder="2. Second skills want to learn" style="height: 43px;" >  
+              <input id="third_option" name="third_option" type="text" placeholder="3. Third skills want to learn" style="height: 43px;" >  
+            </div>
+            <br>
+            <a href="#" id="view_course_list" style="text-decoration: none; text-align: center;">View course list</a>
+            <div id="course_list">
+              <ul>
+                <li> CARPENTRY NC II (38 Days) </li>
+                <li> ELECTRICAL INSTALLATION AND MAINTENANCE NC II (25 Days) </li>
+                <li> CARPENTRY NC II (38 Days)</li>
+                <li> ELECTRICAL INSTALLATION AND MAINTENANCE NC II (25 Days) </li>
+                <li> CONSTRUCTION PAINTING NC II (23 Days) </li>
+                <li> PLUMBING NC I (21 Days) </li>
+                <li> PLUMBING NC II (26 Days) </li>
+                <li> SHIELDED METAL ARC AND WELDING NC I (35 Days) </li>
+                <li> SHIELDED METAL ARC AND WELDING NC II (35 Days) </li>
+                <li> HOUSEKEEPING NC II (55 Days) </li>
+              </ul>
+            </div>
+          </div>
+
+          <div id="fragment-2">
+            <br>
+            <table>
+              <tr>
+                <td colspan="2">
+                  <input id="first_company" name="first_company" type="text" placeholder="1. Company Name" style="height: 43px;" >  
+                </td>
+              </tr>
+              <tr>
+                <td> <input id="first_position" name="first_position" type="text" placeholder="Position" style="height: 43px;" >  </td>
+                <td> <input id="first_year_employment" name="first_year_employment" type="text" placeholder="Year(s) Employed" style="height: 43px;" >  </td>
+              </tr>
+              <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+              <tr>
+                <td colspan="2">
+                  <input id="second_company" name="second_company" type="text" placeholder="2. Company Name" style="height: 43px;" >  
+                </td>
+              </tr>
+              <tr>
+                <td> <input id="second_position" name="second_position" type="text" placeholder="Position" style="height: 43px;" >  </td>
+                <td> <input id="second_year_employment" name="second_year_employment" type="text" placeholder="Year(s) Employed" style="height: 43px;" >  </td>
+              </tr>
+              <tr><td>&nbsp;</td><td>&nbsp;</td></tr>
+              <tr>
+                <td colspan="2">
+                  <input id="third_company" name="third_company" type="text" placeholder="3. Company Name" style="height: 43px;" >  
+                </td>
+              </tr>
+              <tr>
+                <td> <input id="third_position" name="third_position" type="text" placeholder="Position" style="height: 43px;" >  </td>
+                <td> <input id="third_year_employment" name="third_year_employment" type="text" placeholder="Year(s) Employed" style="height: 43px;" >  </td>
+              </tr>
+            </table>
+            <br>
+            <label style="font-size: 17px; font-family: 'Arial';"> Program want to avail  </label>
+            <select name="program_avail" id="program_avail" style="font-family: 'Arial'; font-size: 11px;">
+              <option value="City Scholarship Program"> City Scholarship Program </option>
+              <option value="CSWD Educational Assistance"> CSWD Educational Assistance </option>
+              <option value=" DepEd Open High School Program"> DepEd Open High School Program </option>
+              <option value="Alternative Learning System"> Alternative Learning System </option>
+              <option value="PESO"> PESO </option>
+              <option value="CDO Technical Vocational Institute"> CDO Technical Vocational Institute </option>
+              <option value="YouthWorkPh"> YouthWorkPh </option>
+            </select>
+          </div>
+        </div> 
+        <br>
+        <div data-role="popup" id="div_info3" data-position-to="window" data-overlay-theme="a" data-transition="pop">
+          <p id="p_info3" style="color: rgb(0, 0, 0);"> Information Successfully Saved! </p>
+        </div>
+        <button id="btnSave_pyap"> Save </button>
+      </div>
+    </div> <!-- END DIV PYAP Dialog-->
+
+    <script>
+      function save_record(){
+        var youthID = localStorage.getItem('youth_id');
+        $.ajax({
+          url: `${IP}save_youth_other_details`,
+          method: "post",
+          dataType: "json",
+          crossDomain: true,
+          data: {
+              youth_id : youthID,
+              elementary : $('#elementary').val(),
+              secondary : $('#secondary').val(),
+              no_school_in_barangay : $('#school_in_brgy').val(),
+              unable_to_pay : $('#financial_problem').val(),
+              school_too_far : $('#school_faraway').val(),
+              other_reasons_for_dropout : $('#other_reasons').val(),
+              distance_from_school_inKMS : $('#distance_from_home_inKMS').val(),
+              distance_from_school_inHRS : $('#distance_from_home_inHRS').val(),
+              mode_of_transportation : $('#mode_of_transportation').val(),
+              day_can_attend : $('#day_attend').val(),
+              pass_the_AcademicEquivalency_test : $('#passed_the_acad_test').val(),
+              attended_ALS_session_before : $('#attended_before').val(),
+              name_of_program : $('#name_of_program').val(),
+              year_attended : $('#year_attended').val(),
+              level_of_literacy : $('#level_of_literacy').val(),
+              isCourse_completed : $('#is_program_completed').val(),
+              reason_for_notCompleted : $('#reason_not_completed').val()
+            },
+            success: function (response) {
+              $('#div_info').popup("open");
+            }
+        }) //end ajax call
+      }
+
+      function save_tesda(){
+        var youthID = localStorage.getItem('youth_id');
+        $.ajax({
+          url: `${IP}save_tesda_youth_other_details`,
+          method: "post",
+          dataType: "json",
+          crossDomain: true,
+          data: {
+              youth_id : youthID,
+              educational_attainment : $('#educational_attainment').val(),
+              client_classification : $('#client_classification').val(),
+              course_name : $('#course_name').val(),
+              scholarship : $('#scholarship').val()
+            },
+            success: function (response) {
+              $('#div_info2').popup("open");
+            }
+        }) //end ajax call
+      }
+
+        $(document).ready(function () {
+            $('#btn_show_als').hide();
+            $('#btn_show_tesda').hide();
+            $('#btn_show_pyap').hide();
+            $('#btn_show_main').hide();
+            $('#if_attended').hide();
+            $('#course_list').hide();
+            $('#if_interested_techvoc').hide();
+            $('#reason_not_completed').hide();
+            $('#others_clients_classification').hide();
+            $('#btnLogout').on('click', function(){
+                window.location.href = 'index.html';
+            })
+
+            $('#btnSave').on('click', function(){
+              save_record();
+            });
+
+            $('#btnSave_tesda').on('click', function(){
+              save_tesda();
+            });
+
+            $('#btnSave_pyap').on('click', function(){
+              $('#div_info3').popup("open");
+            });
+
+            $("#div_info").on("popupafterclose", function (e, ui){
+                $('#als_dialog').hide(300);
+                $('#btn_show_main').click();
+            });
+
+            $("#div_info2").on("popupafterclose", function (e, ui){
+                $('#tesda_dialog').hide(300);
+                $('#btn_show_main').click();
+            });
+
+            $("#view_course_list").on("click", function (e, ui){
+              if($('#view_course_list').text() == 'View course list')
+              {
+                $('#course_list').show(300);
+                $("#view_course_list").text('Hide course list');
+              }
+              else
+              {
+                $('#course_list').hide(300);
+                $("#view_course_list").text('View course list');
+              }
+                
+            });
+
+            $('#attended_before').on('change', function(){
+              if($('#attended_before').val() == 'Yes')
+              {
+                $('#if_attended').show(300);
+              }
+              else
+              {
+                $('#if_attended').hide(300);
+              }
+            });
+
+            $('#client_classification').on('change', function(){
+              if($('#client_classification').val() == 'Others')
+              {
+                $('#others_clients_classification').show(300);
+              }
+              else
+              {
+                $('#others_clients_classification').hide(300);
+              }
+            });
+
+            $('#interested_in_techvoc').on('change', function(){
+              if($('#interested_in_techvoc').val() == 'Yes')
+              {
+                $('#if_interested_techvoc').show(300);
+              }
+              else
+              {
+                $('#if_interested_techvoc').hide(300);
+              }
+            });
+
+            $('#is_program_completed').on('change', function(){
+              if($('#is_program_completed').val() == 'No')
+              {
+                $('#reason_not_completed').show(300);
+              }
+              else
+              {
+                $('#reason_not_completed').hide(300);
+              }
+            });
+
+            $.ajax({
+                url: `${IP}get_unified_details`,
+                method: "post",
+                dataType: "json",
+                data: {
+                    youth_id: localStorage.getItem('youth_id')
+                },
+                success: function (response) {
+                    let data = response[0];
+                    if(data.agency_registered == 'ALS')
+                    {
+                      $('#btn_show_als').click();
+                    }
+                    else if (data.agency_registered == 'TESDA')
+                    {
+                      $('#btn_show_tesda').click();
+                    }
+                    else if (data.agency_registered == 'PYAP')
+                    {
+                      $('#btn_show_pyap').click();
+                    }
+                } 
+            });
+        });
+    </script>
+</body>
+</html>
